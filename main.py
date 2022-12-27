@@ -33,10 +33,9 @@ logger = logging.getLogger(__name__)
 def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
-    update.message.reply_markdown_v2(
-        fr'Hi {user.mention_markdown_v2()}\ Type /clean\!',
-        reply_markup=ForceReply(selective=True),
-    )
+    username = update.message.from_user.username
+    text = "Hi,", username, "!\n", "You can start with /clean. \n`For additional help use:  /help."
+    update.message.reply_text(text)
 
 def clean_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /clean or take it form db is issued."""
