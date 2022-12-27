@@ -34,17 +34,17 @@ def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
     update.message.reply_markdown_v2(
-        fr'Hi {user.mention_markdown_v2()}\ Type /clean!',
+        fr'Hi {user.mention_markdown_v2()}\ Type /clean\!',
         reply_markup=ForceReply(selective=True),
     )
 
 def clean_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /clean or take it form db is issued."""
-    await update.message.reply_text("Look at this https://youtu.be/dQw4w9WgXcQ?t=34! Are you feel? ")
+    update.message.reply_text("Look at this https://youtu.be/dQw4w9WgXcQ?t=34! Are you feel? ")
 
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
+    update.message.reply_text('Help\!')
 
 
 def echo(update: Update, context: CallbackContext) -> None:
@@ -55,7 +55,7 @@ def echo(update: Update, context: CallbackContext) -> None:
 def main() -> None:
     """Start the bot."""
     # Create the Updater and pass it your bot's token.
-    updater = Updater("TOKEN")
+    updater = Updater(TOKEN)
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
