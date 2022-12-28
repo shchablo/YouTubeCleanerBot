@@ -34,16 +34,23 @@ def start(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /start is issued."""
     user = update.effective_user
     username = update.message.from_user.username
-    text = "Hi,", username, "!\n", "You can start with /clean. \n`For additional help use:  /help."
+    text = "Привет " + str(username) + "!\n" + "Для проверки видео нажми /video. \nНужна помощь? /help."
     update.message.reply_text(text)
 
-def clean_command(update: Update, context: CallbackContext) -> None:
-    """Send a message when the command /clean or take it form db is issued."""
-    update.message.reply_text("Look at this https://youtu.be/dQw4w9WgXcQ?t=34! Are you feel? ")
+def video_command(update: Update, context: CallbackContext) -> None:
+    """Send a message when the command /video or take it form db is issued."""
+    update.message.reply_text("Look at this https://youtu.be/dQw4w9WgXcQ?t=34! Видео для олдов ")
 
 def help_command(update: Update, context: CallbackContext) -> None:
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Help\!')
+    update.message.reply_text('Начнём! /start \n'
+                              'Получить видео на проверку /video \n'
+                              'Для чего это всё? /new1 \n'
+                              'Уведомить о неполадках /new2 \n'
+                              'Статистика /new3 \n' #для админов
+                              'Отправить видео на рассмотрение /new4 \n' #для админов
+                              'Предложить видео /new5 \n'
+                              )
 
 
 def echo(update: Update, context: CallbackContext) -> None:
@@ -62,7 +69,7 @@ def main() -> None:
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("start", start))
     dispatcher.add_handler(CommandHandler("help", help_command))
-    dispatcher.add_handler(CommandHandler("clean", clean_command))
+    dispatcher.add_handler(CommandHandler("video", video_command))
 
     # on non command i.e message - echo the message on Telegram
     dispatcher.add_handler(MessageHandler(Filters.text & ~Filters.command, echo))
